@@ -98,4 +98,4 @@ class ClientController extends Controller
         $client->delete();
         return redirect('/clients');
     }
-}
+}//sera que deu?
