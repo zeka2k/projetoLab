@@ -9,6 +9,9 @@
                 <div class="card-body">
                     You are normal user.
                 </div>
+                <div class="card-body">
+                @include('partials.list')
+                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            First Laravel
+        <a class="navbar-brand" href="{{ url('/home') }}">
+            CyberStore
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -24,6 +24,7 @@
                     <a href="{{url('/clients/create')}}" class="nav-link">Create Client</a>
                 </li>
             </ul>
+            
         </div>
     </div>
 </nav>
