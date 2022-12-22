@@ -9,7 +9,6 @@
                 <div class="card-body">
                     You are Admin.
                 </div>
-
                 <div class="card-body">
                     @if ($message = Session::get('status'))
                     <div class="alert alert-success">

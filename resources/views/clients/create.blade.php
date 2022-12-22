@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{url('/clients')}}" method="post">
-    @csrf {{-- <- Required for protection or the form is rejected --}} First Name: <input type="text" name="firstName"
-        value="{{old('firstName')}}">
+<form action="{{url('/adverts')}}" method="post">
+    @csrf {{-- <- Required for protection or the form is rejected --}} 
+        First Name: <input type="text" name="firstName" value="{{old('firstName')}}">
         Last Name: <input type="text" name="lastName" value="{{old('lastName')}}">
+        Description: <input type="text" name="description" value="{{old('description')}}">
         <button type="submit" class="btn btn-primary">Create</button>
 </form>
 

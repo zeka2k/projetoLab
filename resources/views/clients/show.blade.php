@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2> Show Client</h2>
+            <h2> Show Advert</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url('/clients') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('/adverts') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -25,6 +25,11 @@
             {{ $client->lastName }}
         </div>
     </div>
-
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Description:</strong>
+            {{ $client->description }}
+        </div>
+    </div>
 </div>
 @endsection

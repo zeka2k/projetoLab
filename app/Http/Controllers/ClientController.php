@@ -38,12 +38,13 @@ class ClientController extends Controller
     {
         $request->validate([
             'firstName' => 'required',
-            'lastName' => 'required'
+            'lastName' => 'required',
+            'description' => 'required'
         ]);
 
         Client::create($request->all());
 
-        return redirect('/clients')->with('success', 'Client created succesfully');
+        return redirect('/adverts')->with('success', 'Advert created succesfully');
     }
 
     /**
@@ -79,12 +80,13 @@ class ClientController extends Controller
     {
         $request->validate([
             'firstName' => 'required',
-            'lastName' => 'required'
+            'lastName' => 'required',
+            'description' => 'required'
         ]);
 
         $client->update($request->all());
 
-        return redirect('/clients');
+        return redirect('/adverts');
     }
 
     /**
@@ -96,6 +98,6 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect('/clients');
+        return redirect('/adverts');
     }
 }

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">
-            CyberStore
-        </a>
+            <a class="navbar-brand" href="{{ url('/admin/home') }}">
+                CyberStore
+            </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -16,15 +16,44 @@
             </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{url('/clients/')}}" class="nav-link">Client</a>
+                    <a href="{{url('/adverts')}}" class="nav-link">Adverts</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{url('/clients/create')}}" class="nav-link">Create Client</a>
+                @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{url('/logout')}}"
+                                    onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <a 
+                                        class="dropdown-item" href="{{url('/adverts/create')}}" class="nav-link">Create an Advert
+                                    </a>
+                                    <form id="logout-form" action="/logout" method="POST" class="d-none">
+                                    </form>
+                                </div>
+                                </li>
+                        @endguest
                 </li>
             </ul>
-            
         </div>
     </div>
 </nav>
