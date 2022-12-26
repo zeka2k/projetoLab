@@ -26,13 +26,14 @@ Route::get('/', function () {
 Route::get('/about', [RoutingController::class, 'about']);
 
 //-->Adverts
-Route::get('/adverts', [ClientController::class, 'index']);
-Route::get('/adverts/create', [ClientController::class, 'create'])->middleware('verified');
-Route::post('/adverts', [ClientController::class, 'store']);
-Route::get('/adverts/show/{client}', [ClientController::class, 'show']);
-Route::get('/adverts/edit/{client}', [ClientController::class, 'edit']);
-Route::post('/adverts/update/{client}', [ClientController::class, 'update']);
-Route::post('/adverts/destroy/{client}', [ClientController::class, 'destroy']);
+Route::get('/adverts', [ClientController::class, 'index'])->name('clients.index');
+Route::get('/adverts/myAdverts', [ClientController::class, 'indexMyAdverts'])->name('clients.myadverts');
+Route::get('/adverts/create', [ClientController::class, 'create'])->name('clients.create')->middleware('verified');
+Route::post('/adverts', [ClientController::class, 'store'])->name('clients.store');
+Route::get('/adverts/{client}', [ClientController::class, 'show'])->name('clients.show');
+Route::get('/adverts/edit/{client}', [ClientController::class, 'edit'])->name('clients.edit');
+Route::put('/adverts/{client}', [ClientController::class, 'update'])->name('clients.update');
+Route::delete('/adverts/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 
 //-->Authentication
 Auth::routes(['verify' => true]);

@@ -1,10 +1,38 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{url('/adverts')}}" method="post">
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Add New Advert</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('clients.index') }}"> Back</a>
+        </div>
+    </div>
+</div>
+
+<form action="{{route('clients.store')}}" method="post">
     @csrf {{-- <- Required for protection or the form is rejected --}} 
-        First Name: <input type="text" name="firstName" value="{{old('firstName')}}">
-        Last Name: <input type="text" name="lastName" value="{{old('lastName')}}">
-        Description: <input type="text" name="description" value="{{old('description')}}">
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name:</strong>
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Price:</strong>
+                <input type="number" name="price" class="form-control" placeholder="Price">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Description:</strong>
+                <input type="text" name="description" class="form-control" placeholder="Description">
+            </div>
+        </div>
+        </div>
         <button type="submit" class="btn btn-primary">Create</button>
 </form>
 

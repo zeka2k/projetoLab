@@ -41,13 +41,19 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{url('/logout')}}"
                                     onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                        Logout
+                                            document.getElementById('logout-form').submit();">Logout
                                     </a>
                                     <a 
                                         class="dropdown-item" href="{{url('/adverts/create')}}" class="nav-link">Create an Advert
                                     </a>
+                                    <a 
+                                        class="dropdown-item" href="{{url('/adverts/myAdverts')}}" class="nav-link">My Adverts
+                                    </a>
+                                    <a 
+                                        class="dropdown-item" href="{{url('/adverts/create')}}" class="nav-link">Chat
+                                    </a>
                                     <form id="logout-form" action="/logout" method="POST" class="d-none">
+                                        @csrf 
                                     </form>
                                 </div>
                                 </li>

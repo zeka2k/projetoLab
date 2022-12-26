@@ -7,35 +7,42 @@
             <h2>Edit Advert</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url('/adverts') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('clients.index') }}"> Back</a>
         </div>
     </div>
 </div>
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
-<form action="{{ url('adverts/update/'.$client->id) }}" method="POST">
+<form action="{{ route('clients.update',$client->id) }}" method="POST">
     @csrf
-
+    @method('PUT')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>First Name:</strong>
-                <input type="text" name="firstName" value="{{ $client->firstName }}" class="form-control"
-                    placeholder="First Name">
+                <strong>Name:</strong>
+                <input type="text" name="name" value="{{ $client->name }}" class="form-control" placeholder="Name">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Last Name:</strong>
-                <input type="text" name="lastName" value="{{ $client->lastName }}" class="form-control"
-                    placeholder="Last Name">
+                <strong>Price:</strong>
+                <input type="text" name="price" value="{{ $client->price }}" class="form-control" placeholder="Price">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                <textarea type="text" name="description" value="{{ $client->description }}" class="form-control"
-                    placeholder="Description" rows="3"></textarea>
+                <input type="text" name="description" value="{{ $client->description }}" class="form-control" placeholder="Description">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

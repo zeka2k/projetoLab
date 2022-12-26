@@ -43,4 +43,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'clients_id', 'id');
+    }
 }

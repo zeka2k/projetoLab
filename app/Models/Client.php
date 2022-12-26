@@ -9,5 +9,10 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['firstName', 'lastName', 'description'];
+    protected $fillable = ['name', 'price', 'description', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'airport_id', 'id');
+    }
 }

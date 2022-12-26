@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Object_;
+use Symfony\Component\ErrorHandler\Debug;
 
 class ClientController extends Controller
 {
@@ -16,6 +20,11 @@ class ClientController extends Controller
     {
         $clients = Client::paginate(10);
         return view('clients.index', compact('clients'));
+    }
+    public function indexMyAdverts()
+    {
+        $clients = Client::paginate(10);
+        return view('clients.myAdverts', compact('clients'));
     }
 
     /**
@@ -37,14 +46,18 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'name' => 'required',
+            'price' => 'required',
             'description' => 'required'
         ]);
 
-        Client::create($request->all());
-
-        return redirect('/adverts')->with('success', 'Advert created succesfully');
+        Client::create([
+            'name' => $request['name'],
+            'price' => $request['price'],
+            'description' => $request['description'],
+            'user_id' => auth()->user()->getAuthIdentifier(),
+        ]);
+        return redirect()->route('clients.index')->with('success', 'Advert created succesfully');
     }
 
     /**
@@ -79,14 +92,14 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'name' => 'required',
+            'price' => 'required',
             'description' => 'required'
         ]);
 
         $client->update($request->all());
 
-        return redirect('/adverts');
+        return redirect()->route('clients.index')->with('success', 'Ardvert updated successfully');
     }
 
     /**
@@ -98,6 +111,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect('/adverts');
+        return redirect()->route('clients.index')
+            ->with('success', 'Advert deleted successfully');
     }
 }
