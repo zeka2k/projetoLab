@@ -15,7 +15,7 @@
         <h5>{{$client->name}}</h5>
         <h5>{{$client->price}}€</h5>
         <form action="{{ route('clients.destroy',$client->id) }}" method="POST">
-            <a class="btn btn-info" href="{{ route('clients.show',$client->id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('clients.showMyAdverts',$client->id) }}">Show</a>
             <a class="btn btn-primary" href="{{ route('clients.edit',$client->id) }}">Edit</a>
             @csrf
             @method('DELETE')
@@ -24,8 +24,11 @@
     </li>
     @endif
     @empty
-    <h5 class="text-center">You Have No Adverts!</h5>
+    
   @endforelse
+  @if($client->user_id != Auth::user()->id)
+  <h5 class="text-center">You Have No Adverts!</h5>
+  @endif
 </ul>
 {!! $clients->links('pagination::bootstrap-4') !!}
 

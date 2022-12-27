@@ -76,6 +76,11 @@ class ClientController extends Controller
         return view('clients.showAdmin', ['client' => $client]);
     }
 
+    public function showMyAdverts(Client $client)
+    {
+        return view('clients.showMyAdverts', ['client' => $client]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

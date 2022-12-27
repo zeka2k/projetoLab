@@ -32,6 +32,7 @@ Route::get('/adverts/create', [ClientController::class, 'create'])->name('client
 Route::post('/adverts', [ClientController::class, 'store'])->name('clients.store');
 Route::get('/adverts/{client}', [ClientController::class, 'show'])->name('clients.show');
 Route::get('/adverts/admin/{client}', [ClientController::class, 'showAdmin'])->name('clients.showAdmin');
+Route::get('/adverts/myAdverts/{client}', [ClientController::class, 'showMyAdverts'])->name('clients.showMyAdverts');
 Route::get('/adverts/edit/{client}', [ClientController::class, 'edit'])->name('clients.edit');
 Route::get('/adverts/admin/edit/{client}', [ClientController::class, 'editAdmin'])->name('clients.editAdmin');
 Route::put('/adverts/{client}', [ClientController::class, 'update'])->name('clients.update');

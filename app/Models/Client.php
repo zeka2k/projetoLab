@@ -13,6 +13,6 @@ class Client extends Model
 
     public function user()
     {
-        return $this->belongsTo(user::class, 'airport_id', 'id');
+        return $this->belongsTo(user::class, 'user_id', 'id');
     }
 }
