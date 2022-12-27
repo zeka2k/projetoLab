@@ -24,7 +24,7 @@
     </li>
     @endif
     @empty
-    <h5 class="text-center">No Adverts Found!</h5>
+    <h5 class="text-center">You Have No Adverts!</h5>
   @endforelse
 </ul>
 {!! $clients->links('pagination::bootstrap-4') !!}

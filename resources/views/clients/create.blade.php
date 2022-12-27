@@ -6,7 +6,7 @@
             <h2>Add New Advert</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('clients.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('clients.myadverts') }}"> Back</a>
         </div>
     </div>
 </div>

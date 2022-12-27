@@ -14,9 +14,9 @@
         <h5>{{$client->name}}</h5>
         <h5>{{$client->price}}€</h5>
         @if(Auth::user()->is_admin)
-        <form action="{{ route('clients.destroy',$client->id) }}" method="POST">
-            <a class="btn btn-info" href="{{ route('clients.show',$client->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('clients.edit',$client->id) }}">Edit</a>
+        <form action="{{ route('clients.destroyAdmin',$client->id) }}" method="POST">
+            <a class="btn btn-info" href="{{ route('clients.showAdmin',$client->id) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('clients.editAdmin',$client->id) }}">Edit</a>
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>

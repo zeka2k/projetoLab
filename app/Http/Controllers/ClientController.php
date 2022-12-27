@@ -57,7 +57,7 @@ class ClientController extends Controller
             'description' => $request['description'],
             'user_id' => auth()->user()->getAuthIdentifier(),
         ]);
-        return redirect()->route('clients.index')->with('success', 'Advert created succesfully');
+        return redirect()->route('clients.myadverts')->with('success', 'Advert created succesfully');
     }
 
     /**
@@ -71,6 +71,11 @@ class ClientController extends Controller
         return view('clients.show', ['client' => $client]);
     }
 
+    public function showAdmin(Client $client)
+    {
+        return view('clients.showAdmin', ['client' => $client]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -80,6 +85,16 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         return view('clients.edit', ['client' => $client]);
+    }
+
+    public function editAdmin(Client $client)
+    {
+        return view('clients.editAdmin', ['client' => $client]);
+    }
+
+    public function editMyAdverts(Client $client)
+    {
+        return view('clients.editMyAdverts', ['client' => $client]);
     }
 
     /**
@@ -99,6 +114,19 @@ class ClientController extends Controller
 
         $client->update($request->all());
 
+        return redirect()->route('clients.myadverts')->with('success', 'Ardvert updated successfully');
+    }
+
+    public function updateAdmin(Request $request, Client $client)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required'
+        ]);
+
+        $client->update($request->all());
+
         return redirect()->route('clients.index')->with('success', 'Ardvert updated successfully');
     }
 
@@ -109,6 +137,13 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)
+    {
+        $client->delete();
+        return redirect()->route('clients.myadverts')
+            ->with('success', 'Advert deleted successfully');
+    }
+
+    public function destroyAdmin(Client $client)
     {
         $client->delete();
         return redirect()->route('clients.index')

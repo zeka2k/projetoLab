@@ -7,7 +7,7 @@
             <h2>Edit Advert</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('clients.myadverts') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('clients.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
 </div>
 @endif
 
-<form action="{{ route('clients.update',$client->id) }}" method="POST">
+<form action="{{ route('clients.updateAdmin',$client->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

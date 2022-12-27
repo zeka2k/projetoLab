@@ -31,9 +31,13 @@ Route::get('/adverts/myAdverts', [ClientController::class, 'indexMyAdverts'])->n
 Route::get('/adverts/create', [ClientController::class, 'create'])->name('clients.create')->middleware('verified');
 Route::post('/adverts', [ClientController::class, 'store'])->name('clients.store');
 Route::get('/adverts/{client}', [ClientController::class, 'show'])->name('clients.show');
+Route::get('/adverts/admin/{client}', [ClientController::class, 'showAdmin'])->name('clients.showAdmin');
 Route::get('/adverts/edit/{client}', [ClientController::class, 'edit'])->name('clients.edit');
+Route::get('/adverts/admin/edit/{client}', [ClientController::class, 'editAdmin'])->name('clients.editAdmin');
 Route::put('/adverts/{client}', [ClientController::class, 'update'])->name('clients.update');
+Route::put('/adverts/admin/{client}', [ClientController::class, 'updateAdmin'])->name('clients.updateAdmin');
 Route::delete('/adverts/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::delete('/adverts/admin/{client}', [ClientController::class, 'destroyAdmin'])->name('clients.destroyAdmin');
 
 //-->Authentication
 Auth::routes(['verify' => true]);
