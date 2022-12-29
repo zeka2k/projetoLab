@@ -17,7 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
+            //$table->unsignedBigInteger('client_id');
             $table->timestamps();
+
+            // $table->foreign('client_id', 'client_id_fk')
+            //     ->references('id')
+            //     ->on('client')
+            //     ->onUpdate('CASCADE')
+            //     ->onDelete('RESTRICT');
         });
     }
 

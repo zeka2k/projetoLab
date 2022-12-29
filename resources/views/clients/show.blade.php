@@ -37,5 +37,10 @@
             {{ $client->user->email }}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="card-body">
+            @include('partials.list')
+        </div>
+    </div>
 </div>
 @endsection

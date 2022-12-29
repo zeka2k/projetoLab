@@ -4,6 +4,8 @@ use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ChatsController;
+use Faker\Guesser\Name;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,4 +48,9 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 //-->Photo
-Route::post('save', [PhotoController::class, 'store'])->name('upload.picture')->middleware('is_admin');//so o admin pode enviar fotos
+Route::post('save', [PhotoController::class, 'store'])->name('upload.picture')->middleware('verified');
+
+//-->Messages
+Route::get('/chat', [ChatsController::class, 'index'])->name('chat.index');
+Route::post('/chat', [ChatsController::class, 'changeCurrentUser'])->name('chat.changeCurrentUser');
+Route::post('/messages', [ChatsController::class, 'sendMessage']);

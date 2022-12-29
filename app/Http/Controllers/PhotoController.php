@@ -41,6 +41,10 @@ class PhotoController extends Controller
         $name = $request->file('image')->getClientOriginalName();
         $request->file('image')->store('public/images');
 
+        // Photo::create([
+        //     'client_id' => Photo->client()->id,
+        // ]);
+
         $picture = new Photo;
         $picture->name = $name;
         $picture->path = $request->file('image')->hashName();

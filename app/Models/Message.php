@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Photo extends Model
+class Message extends Model
 {
     use HasFactory;
 
-    public function client()
+    protected $fillable = ['message'];
+
+    public function user()
     {
-        return $this->belongsTo(Client::class, 'client_id', 'id');
+        return $this->belongsTo(User::class);
     }
 }

@@ -22,13 +22,12 @@
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </li>
+    @else
+      <h5 class="text-center">You Have No Adverts!</h5>
     @endif
     @empty
-    
+      <h5 class="text-center">You Have No Adverts!</h5>
   @endforelse
-  @if($client->user_id != Auth::user()->id)
-  <h5 class="text-center">You Have No Adverts!</h5>
-  @endif
 </ul>
 {!! $clients->links('pagination::bootstrap-4') !!}
 

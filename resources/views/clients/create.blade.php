@@ -32,8 +32,18 @@
                 <input type="text" name="description" class="form-control" placeholder="Description">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="card-body">
+                @if ($message = Session::get('status'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
+                @include('partials.upload')
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+        {{--<button type="submit" class="btn btn-primary">Create</button>--}}
 </form>
 
 @if ($errors->any())

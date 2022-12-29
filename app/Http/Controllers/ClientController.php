@@ -144,14 +144,12 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients.myadverts')
-            ->with('success', 'Advert deleted successfully');
+        return redirect()->route('clients.myadverts')->with('success', 'Advert deleted successfully');
     }
 
     public function destroyAdmin(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients.index')
-            ->with('success', 'Advert deleted successfully');
+        return redirect()->route('clients.index')->with('success', 'Advert deleted successfully');
     }
 }
