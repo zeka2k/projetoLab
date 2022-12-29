@@ -23,6 +23,7 @@
         </form>
         @else
         <a class="btn btn-info" href="{{ route('clients.show',$client->id) }}">Show</a>
+        <a class="btn btn-info" href="{{ route('stripe.post') }}">Buy</a>
         @endif
     </li>
     @empty

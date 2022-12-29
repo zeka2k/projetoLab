@@ -25,7 +25,7 @@ class ChatsController extends Controller
     public function index()
     {
         $messages = Message::with('user')->get();
-        $this->currentUser = 'Ms. Jude Rath';
+        $this->currentUser = 'Zoey Casper';
         $uniqueUsers = [];
 
         foreach ($messages as $message) {

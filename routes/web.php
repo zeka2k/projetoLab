@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\StripePaymentController;
 use Faker\Guesser\Name;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -54,3 +55,9 @@ Route::post('save', [PhotoController::class, 'store'])->name('upload.picture')->
 Route::get('/chat', [ChatsController::class, 'index'])->name('chat.index');
 Route::post('/chat', [ChatsController::class, 'changeCurrentUser'])->name('chat.changeCurrentUser');
 Route::post('/messages', [ChatsController::class, 'sendMessage']);
+
+//-->Stripe
+Route::controller(StripePaymentController::class)->group(function(){
+  Route::get('stripe', 'stripe');
+  Route::post('stripe', 'stripePost')->name('stripe.post');
+});
