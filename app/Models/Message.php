@@ -9,10 +9,10 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['message'];
+    protected $fillable = ['message', 'participant1_id', 'participant2_id'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasManyThrough(User::class, User::class, 'participant1_id', 'participant2_id');
     }
 }

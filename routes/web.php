@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use Faker\Guesser\Name;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +45,13 @@ Route::put('/adverts/admin/{client}', [ClientController::class, 'updateAdmin'])-
 Route::delete('/adverts/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 Route::delete('/adverts/admin/{client}', [ClientController::class, 'destroyAdmin'])->name('clients.destroyAdmin');
 
+//-->Advert comments
+Route::get('/postindex', [PostController::class, 'index'])->name('posts.index');
+Route::get('/post', [PostController::class, 'create'])->name('posts.create');
+Route::get('/post/{client}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/poststore', [PostController::class, 'store'])->name('posts.store');
+
 //-->Authentication
 Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'home'])->name('home');
@@ -58,6 +67,6 @@ Route::post('/messages', [ChatsController::class, 'sendMessage']);
 
 //-->Stripe
 Route::controller(StripePaymentController::class)->group(function(){
-  Route::get('stripe', 'stripe');
-  Route::post('stripe', 'stripePost')->name('stripe.post');
+  Route::get('/stripe/{client}', 'stripe')->name('stripe.get');
+  Route::post('/stripe/{client}', 'stripePost')->name('stripe.post');
 });

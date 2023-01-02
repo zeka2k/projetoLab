@@ -23,7 +23,7 @@
               <p>{{ Session::get('success') }}</p>
             </div>
             @endif
-            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+            <form role="form" action="{{ route('stripe.post',$client->id) }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
               @csrf
               <div class='form-row row'>
                 <div class='col-xs-12 form-group required'>
@@ -54,7 +54,7 @@
               </div>
               <div class="row">
                 <div class="col-xs-12">
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ({{$client->price}}€)</button>
                 </div>
               </div>
             </form>

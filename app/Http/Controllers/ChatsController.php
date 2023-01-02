@@ -7,6 +7,7 @@ use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use App\Events\MessageSent;
 use App\Models\User;
+use Stripe\ApiOperations\All;
 
 class ChatsController extends Controller
 {
@@ -24,13 +25,17 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        $messages = Message::with('user')->get();
-        $this->currentUser = 'Zoey Casper';
+        $logged_user = Auth::user()->getAuthIdentifier();//id user logado
+
+        //SELECT * FROM messages WHERE participant1_id = 1
+        $messages = Message::where('participant1_id', $logged_user)->with('user')->get();
+        dump($messages);
         $uniqueUsers = [];
 
         foreach ($messages as $message) {
-            if (!in_array($message->user->name, $uniqueUsers)) {
-                array_push($uniqueUsers, $message->user->name);
+            $this->currentUser = $message->participant2_id;
+            if (!in_array($message->participant1_id->name, $uniqueUsers)) {
+                array_push($uniqueUsers, $message->participant1_id->name);
             }
         }
 

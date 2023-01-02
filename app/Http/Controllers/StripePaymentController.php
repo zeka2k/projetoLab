@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Stripe;
+use App\Models\Client;
 
 class StripePaymentController extends Controller
 {
@@ -13,9 +14,9 @@ class StripePaymentController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function stripe()
+  public function stripe(Client $client)
   {
-    return view('stripe');
+    return view('stripe', ['client' => $client]);
   }
 
   /**
@@ -23,20 +24,20 @@ class StripePaymentController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function stripePost(Request $request)
+  public function stripePost(Client $client, Request $request)
   {
     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
     Stripe\Charge::create([
-      "amount" => 100 * 100,
+      "amount" => $client->price * 100,
       "currency" => "eur",
       "source" => $request->stripeToken,
-      "description" => "Test payment from itsolutionstuff.com."
+      "description" => $client->name . ' ' . $client->description
     ]);
 
     Session::flash('success', 'Payment successful!');
-
-    return back();
+    $client->delete();
+    return redirect('/adverts');
   }
 
   //If you must need to pass customer name and address with shipping address then you can use bellow method code:

@@ -15,9 +15,22 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('participant1_id');
+            $table->unsignedBigInteger('participant2_id');
             $table->text('message');
             $table->timestamps();
+
+            $table->foreign('participant1_id', 'participant1_id_fk')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('RESTRICT');
+
+            $table->foreign('participant2_id', 'participant2_id_fk')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('RESTRICT');
         });
     }
 
