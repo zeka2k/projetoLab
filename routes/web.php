@@ -46,11 +46,16 @@ Route::delete('/adverts/{client}', [ClientController::class, 'destroy'])->name('
 Route::delete('/adverts/admin/{client}', [ClientController::class, 'destroyAdmin'])->name('clients.destroyAdmin');
 
 //-->Advert comments
-Route::get('/postindex', [PostController::class, 'index'])->name('posts.index');
-Route::get('/post', [PostController::class, 'create'])->name('posts.create');
-Route::get('/post/{client}', [PostController::class, 'show'])->name('posts.show');
+//Route::get('/postindex', [PostController::class, 'index'])->name('posts.index');
+//Route::get('/post', [PostController::class, 'create'])->name('posts.create');
+///Route::get('/post/{client}', [PostController::class, 'show'])->name('posts.show');
+//Route::post('/poststore', [PostController::class, 'store'])->name('posts.store');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::post('/poststore', [PostController::class, 'store'])->name('posts.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::get('/comments/edit/{comment}', [CommentController::class, 'edit'])->name('comments.edit');
+Route::put('/comments/{client}', [CommentController::class, 'update'])->name('comments.update');
+
+
 
 //-->Authentication
 Auth::routes(['verify' => true]);

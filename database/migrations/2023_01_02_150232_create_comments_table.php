@@ -13,18 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->text('body');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        // Schema::create('clients', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->float('price');
+        //     $table->string('description');
+        //     $table->unsignedBigInteger('user_id');
+        //     $table->timestamps();
+
+        //     $table->foreign('user_id', 'user_id_fk')
+        //         ->references('id')
+        //         ->on('users')
+        //         ->onUpdate('CASCADE')
+        //         ->onDelete('RESTRICT');
+        // });
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('post_id')->unsigned();
+            $table->integer('client_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->text('body');
             $table->timestamps();
@@ -39,7 +46,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('clients');
         Schema::dropIfExists('comments');
     }
 };
