@@ -38,4 +38,17 @@
         </div>
     </div>
 </div>
+<h4>Add comment</h4>
+<form method="post" action="{{ route('comments.store') }}">
+    @csrf
+    <div class="form-group">
+        <textarea class="form-control" name="body"></textarea>
+        <input type="hidden" name="client_id" value="{{ $client->id }}" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Add Comment" />
+    </div>
+</form>
+<h4>Display Comments</h4>
+@include('clients.commentsDisplay', ['comments' => $client->comments, 'client_id' => $client->id])
 @endsection

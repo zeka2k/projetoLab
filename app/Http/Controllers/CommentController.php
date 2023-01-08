@@ -33,20 +33,4 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->back()->with('success', 'Comment deleted successfully');
     }
-
-    public function edit(Comment $comment)
-    {
-        return view('comments.edit', ['comment' => $comment]);
-    }
-
-    public function update(Request $request, Comment $comment)
-    {
-        $request->validate([
-            'body' => 'required',
-        ]);
-
-        $comment->update($request->all());
-
-        return redirect()->back()->with('success', 'Ardvert updated successfully');
-    }
 }

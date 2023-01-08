@@ -7,9 +7,12 @@
     <p>{{ $message }}</p>
 </div>
 @endif
-
+@forelse($clients as $client)
+<form method="GET" action="{{ route('clients.search',$client->id) }}">
+    <input type="text" name="query" placeholder="Search">
+    <button type="submit">Search</button>
+</form>
 <ul class="list-group">
-    @forelse($clients as $client)
     <li class="list-group-item">
         <h5>{{$client->name}}</h5>
         <h5>{{$client->price}}€</h5>

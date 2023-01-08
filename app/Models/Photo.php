@@ -9,6 +9,8 @@ class Photo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['client_id'];
+
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');

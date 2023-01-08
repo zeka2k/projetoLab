@@ -152,4 +152,12 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('success', 'Advert deleted successfully');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $results = Client::where('name', 'like', "%$query%")->get();
+
+        return view('clients.search', ['results' => $results]);
+    }
 }

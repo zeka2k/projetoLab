@@ -36,6 +36,7 @@ Route::get('/adverts/myAdverts', [ClientController::class, 'indexMyAdverts'])->n
 Route::get('/adverts/create', [ClientController::class, 'create'])->name('clients.create')->middleware('verified');
 Route::post('/adverts', [ClientController::class, 'store'])->name('clients.store');
 Route::get('/adverts/{client}', [ClientController::class, 'show'])->name('clients.show');
+Route::get('/advert/{client}', [ClientController::class, 'search'])->name('clients.search');
 Route::get('/adverts/admin/{client}', [ClientController::class, 'showAdmin'])->name('clients.showAdmin');
 Route::get('/adverts/myAdverts/{client}', [ClientController::class, 'showMyAdverts'])->name('clients.showMyAdverts');
 Route::get('/adverts/edit/{client}', [ClientController::class, 'edit'])->name('clients.edit');
