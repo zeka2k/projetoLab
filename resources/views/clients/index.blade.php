@@ -24,9 +24,11 @@
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
-        @else
+        @elseif($client->user_id == Auth::user()->id)
         <a class="btn btn-info" href="{{ route('clients.show',$client->id) }}">Show</a>
+        @else
         <a class="btn btn-info" href="{{ route('stripe.get',$client->id) }}">Buy</a>
+        <a class="btn btn-info" href="{{ route('clients.show',$client->id) }}">Show</a>
         @endif
     </li>
     @empty
