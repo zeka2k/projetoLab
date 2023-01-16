@@ -60,6 +60,17 @@ class ClientController extends Controller
         return redirect()->route('clients.myadverts')->with('success', 'Advert created succesfully');
     }
 
+    public function uploadImage(Request $request, $id)
+    {
+        $client = Client::find($id);
+        if ($request->hasFile('image')) {
+            $filename = $request->image->getClientOriginalName();
+            $request->image->storeAs('images', $filename, 'public');
+            $client->update(['image' => $filename]);
+        }
+        return redirect()->back();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -155,6 +166,7 @@ class ClientController extends Controller
 
     public function search(Request $request)
     {
+        
         $query = $request->input('query');
         $results = Client::where('name', 'like', "%$query%")->get();
 

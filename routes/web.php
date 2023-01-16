@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 //-->Default/about
 Route::get('/', function () {
-  return view('welcome');
+  return view('adminHome');
 });
 Route::get('/about', [RoutingController::class, 'about']);
 
@@ -65,6 +65,7 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 //-->Photo
 Route::post('save', [PhotoController::class, 'store'])->name('upload.picture')->middleware('verified');
+Route::post('/uploadPP/{id}',[ClientController::class, 'uploadImage']);
 
 //-->Messages
 Route::get('/chat', [ChatsController::class, 'index'])->name('chat.index');

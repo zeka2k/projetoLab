@@ -36,6 +36,18 @@ return new class extends Migration
             $table->text('body');
             $table->timestamps();
             $table->softDeletes();
+
+            // $table->foreign('user_id', 'user_id_fk')
+            //     ->references('id')
+            //     ->on('users')
+            //     ->onUpdate('CASCADE')
+            //     ->onDelete('RESTRICT');
+
+            // $table->foreign('client_id', 'client_id_fk')
+            //     ->references('id')
+            //     ->on('client')
+            //     ->onUpdate('CASCADE')
+            //     ->onDelete('RESTRICT');
         });
     }
 

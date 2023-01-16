@@ -6,17 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{url('/')}}" class="nav-link">Index</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
                     <a href="{{url('/about')}}" class="nav-link">About</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="{{url('/adverts')}}" class="nav-link">Adverts</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-auto">
@@ -34,6 +24,11 @@
                 </li>
                 @endif
                 @else
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{url('/adverts')}}" class="nav-link">Adverts</a>
+                    </li>
+                </ul>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}

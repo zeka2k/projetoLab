@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Session;
 use Stripe;
 use App\Models\Client;
+use App\Models\User;
+use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StripePaymentController extends Controller
 {
@@ -37,6 +41,9 @@ class StripePaymentController extends Controller
 
     Session::flash('success', 'Payment successful!');
     $client->delete();
+    //$user = Auth::user()->getAuthIdentifier();
+    Mail::to('38726@ufp.edu.pt')->send(new MyTestEmail($client));
+
     return redirect('/adverts');
   }
 

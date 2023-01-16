@@ -4,20 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                    You are Admin.
-                </div>
-                <div class="card-body">
-                    @if ($message = Session::get('status'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                    @endif
-                    @include('partials.upload')
-                </div>
-            </div>
+            <h2 class="mt-5 mb-3 text-center">Welcome to CyberStore!!</h2>
         </div>
     </div>
 </div>
