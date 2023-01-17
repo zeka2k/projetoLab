@@ -7,6 +7,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PostController;
 use Faker\Guesser\Name;
 use Illuminate\Foundation\Auth\User;
@@ -65,7 +66,7 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 //-->Photo
 Route::post('save', [PhotoController::class, 'store'])->name('upload.picture')->middleware('verified');
-Route::post('/uploadPP/{id}',[ClientController::class, 'uploadImage']);
+Route::post('/uploadPP/{id}', [ClientController::class, 'uploadImage']);
 
 //-->Messages
 Route::get('/chat', [ChatsController::class, 'index'])->name('chat.index');
@@ -77,3 +78,7 @@ Route::controller(StripePaymentController::class)->group(function(){
   Route::get('/stripe/{client}', 'stripe')->name('stripe.get');
   Route::post('/stripe/{client}', 'stripePost')->name('stripe.post');
 });
+
+//-->PDF
+Route::get('generate-invoice-pdf', array('as'=> 'generate.invoice.pdf', 'uses' => 'PDFController@generateInvoicePDF'));
+Route::get('/pdf/{id}', [PDFController::class, 'generateInvoicePDF']);

@@ -8,10 +8,6 @@
 </div>
 @endif
 @forelse($clients as $client)
-<form method="GET" action="{{ route('clients.search',$client->id) }}">
-    <input type="text" name="query" placeholder="Search">
-    <button type="submit">Search</button>
-</form>
 <ul class="list-group">
     <li class="list-group-item">
         <h5>{{$client->name}}</h5>
@@ -34,6 +30,10 @@
     @empty
     <h5 class="text-center">No Adverts Found!</h5>
     @endforelse
+    <form method="GET" action="{{ route('clients.search',$client->id) }}">
+        <input type="text" name="query" placeholder="Search">
+        <button type="submit">Search</button>
+    </form>
 </ul>
 {!! $clients->links('pagination::bootstrap-4') !!}
 

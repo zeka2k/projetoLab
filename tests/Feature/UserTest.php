@@ -23,7 +23,7 @@ class UserTest extends TestCase
             //'is_admin' => '0',
             'password' => 'password',
         ]);
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/home');
     }
 
     public function test_if_login_User()

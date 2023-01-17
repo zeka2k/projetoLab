@@ -40,10 +40,9 @@ class StripePaymentController extends Controller
     ]);
 
     Session::flash('success', 'Payment successful!');
-    $client->delete();
     //$user = Auth::user()->getAuthIdentifier();
     Mail::to('38726@ufp.edu.pt')->send(new MyTestEmail($client));
-
+    $client->delete();
     return redirect('/adverts');
   }
 

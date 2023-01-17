@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->string('description');
-            $table->string('image')->default('item.png');
+            $table->string('image')->default('item.jpg');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

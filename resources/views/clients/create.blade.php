@@ -12,8 +12,8 @@
 </div>
 
 <form action="{{route('clients.store')}}" method="post">
-    @csrf {{-- <- Required for protection or the form is rejected --}}
-    <div class="row">
+    @csrf {{-- <- Required for protection or the form is rejected --}} 
+        <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
@@ -33,12 +33,17 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            @if($client->image)
-            <img class="image" src="{{asset('/storage/images/'.$client->image)}}" alt="client_image" style="width: 380px;height: 380px; padding: 10px; margin-left: 30px; ">
-            @endif
+            <div class="card-body">
+                @if ($message = Session::get('status'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
+                @include('partials.upload')
+            </div>
         </div>
-    </div>
-    {{--<button type="submit" class="btn btn-primary">Create</button>--}}
+        </div>
+        {{--<button type="submit" class="btn btn-primary">Create</button>--}}
 </form>
 
 @if ($errors->any())

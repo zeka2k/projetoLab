@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Photo;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -33,23 +34,15 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
-
-        $name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->store('public/images');
-
-        // Photo::create([
-        //     'client_id' => Photo->client()->id,
-        // ]);
-
-        $picture = new Photo;
-        $picture->name = $name;
-        $picture->path = $request->file('image')->hashName();
-        $picture->save();
-        return redirect()->back()->with('status', 'Image Has been uploaded');
+        $client = Client::find($id);
+        if ($request->hasFile('image')) {
+            $filename = $request->image->getClientOriginalName();
+            $request->image->storeAs('images', $filename, 'public');
+            $client->update(['image' => $filename]);
+        }
+        return redirect()->back();
     }
 
     /**

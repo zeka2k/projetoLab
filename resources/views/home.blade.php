@@ -4,15 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                    You are normal user.
-                </div>
-                <div class="card-body">
-                @include('partials.list')
-                </div>
-            </div>
+            <h2 class="mt-5 mb-3 text-center">Welcome to CyberStore!!</h2>
         </div>
     </div>
 </div>

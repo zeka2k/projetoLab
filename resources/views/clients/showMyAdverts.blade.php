@@ -37,6 +37,13 @@
             {{ $client->user->email }}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            @if($client->image)
+            <img class="image" src="{{asset('/storage/images/'.$client->image)}}" alt="client_image" style="width: 380px;height: 380px; padding: 10px; margin-left: 30px; ">
+            @endif
+        </div>
+    </div>
 </div>
 <h4>Add comment</h4>
 <form method="post" action="{{ route('comments.store') }}">

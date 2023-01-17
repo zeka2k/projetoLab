@@ -22,7 +22,9 @@ class ClientFactory extends Factory
             'name' => fake()->realText(10, 2),
             'price' => mt_rand(0, 1000),
             'description' => fake()->realText(30, 1),
+            'image' => 'vmpxfab0sz9pTveGBmjXQCdVqPViPTFud9ASWyo4.jpg',
             'user_id' => mt_rand(1, 100),
+
         ];
     }
 }

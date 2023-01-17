@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Cast\Object_;
 use Symfony\Component\ErrorHandler\Debug;
+use PDF;
 
 class ClientController extends Controller
 {
@@ -55,8 +56,9 @@ class ClientController extends Controller
             'name' => $request['name'],
             'price' => $request['price'],
             'description' => $request['description'],
+            'image' => $request['image'],
             'user_id' => auth()->user()->getAuthIdentifier(),
-        ]);
+        ]);//guarddar a imagem 
         return redirect()->route('clients.myadverts')->with('success', 'Advert created succesfully');
     }
 
@@ -65,7 +67,7 @@ class ClientController extends Controller
         $client = Client::find($id);
         if ($request->hasFile('image')) {
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('images', $filename, 'public');
+            $request->image->storeAs('images', $filename, 'public');//nao esta a guardar na storage
             $client->update(['image' => $filename]);
         }
         return redirect()->back();
@@ -166,7 +168,7 @@ class ClientController extends Controller
 
     public function search(Request $request)
     {
-        
+
         $query = $request->input('query');
         $results = Client::where('name', 'like', "%$query%")->get();
 

@@ -11,7 +11,11 @@
         </div>
     </div>
 </div>
-
+<ul class="list-group">
+    <li class="pull-right">
+        <a class="btn btn-info" href="{{ route('stripe.get',$client->id) }}">Buy</a>
+    </li>
+</ul>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -35,6 +39,13 @@
         <div class="form-group">
             <strong>Seller:</strong>
             {{ $client->user->email }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            @if($client->image)
+            <img class="image" src="{{asset('/storage/images/'.$client->image)}}" alt="client_image" style="width: 380px;height: 380px; padding: 10px; margin-left: 30px; ">
+            @endif
         </div>
     </div>
 </div>
