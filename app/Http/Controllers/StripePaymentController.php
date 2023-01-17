@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class StripePaymentController extends Controller
 {
@@ -40,8 +41,12 @@ class StripePaymentController extends Controller
     ]);
 
     Session::flash('success', 'Payment successful!');
-    //$user = Auth::user()->getAuthIdentifier();
-    Mail::to('38726@ufp.edu.pt')->send(new MyTestEmail($client));
+
+    $user = Auth::user();
+    $pdf = PDF::loadView('PDF', compact('client'), compact('user'));
+    Mail::to('38726@ufp.edu.pt')->send(new MyTestEmail($client), function ($message) use ($pdf) {
+      $message->attachData($pdf->output(), "text.pdf");
+    });
     $client->delete();
     return redirect('/adverts');
   }
